@@ -1,3 +1,5 @@
+var ignoreKeys = ['fb_xdm_frame_https',
+                  'length', 'localStorage', 'sessionStorage'];
 var cache = [], result = {};
 cache.push(cache);
 cache.push(result);
@@ -28,18 +30,11 @@ if (typeof into != 'object'
     cache.push(into);
     
     for (x in into) {
-        if (x == 'length'
-            || x == 'fb_xdm_frame_https') continue;
+        if (ignoreKeys.indexOf(x) > -1) continue;
         result[x] = {};
         dive(into[x], result[x], depth + 1);
     };
 }
+
 dive(window, result, 0);
-localStorage.setItem("result", JSON.stringify(result));
-
-
-JSON.stringify(result);
-
-
-
-
+files.write(JSON.stringify(result));
