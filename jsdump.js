@@ -35,7 +35,11 @@ if (typeof into != 'object'
     };
 }
 dive(window, result, 0);
+localStorage.setItem("result", JSON.stringify(result));
+
+
 JSON.stringify(result);
+
 
 
 
