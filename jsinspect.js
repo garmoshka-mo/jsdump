@@ -8,9 +8,19 @@ function dive(into, result, depth, path) {
     
     if (depth > 6) return;
         
-if (typeof into != 'object' 
-    && typeof into != 'array'
-   && typeof into != 'undefined') {
+    if (typeof into == 'string') {
+        var reg = /stringinside/g;
+        if (!!into.match(reg)) {
+            console.log(path)
+            console.log(into);
+        }
+    }
+
+    
+    
+    if (typeof into != 'object' 
+        && typeof into != 'array'
+        && typeof into != 'undefined') {
         result['type'] = typeof into;
         result['_'] = into;
         return;
